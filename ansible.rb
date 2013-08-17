@@ -17,6 +17,7 @@ class Ansible < Formula
     end
 
     system "/usr/local/bin/python", "setup.py", "build"
+    system "make", "docs"
 
     bin.install Dir['build/scripts-2.7/*']
     (lib+'python2.7/site-packages/ansible').mkpath
@@ -24,5 +25,9 @@ class Ansible < Formula
 
     (share+'ansible').mkpath
     (share+'ansible').install Dir['library/*']
+
+    man.mkpath
+    man1.install Dir['docs/man/man1/*.1']
+    man3.install Dir['docs/man/man3/*.3']
   end
 end
